@@ -42,3 +42,8 @@ model Product {
   belongsTo   User     @relation(fields: [belongsToId], references: [id])
   createdAt   DateTime @default(now())
 }
+
+//“ A changelog is a log or record of all notable changes made to a project. 
+// The project is often a website or software project, 
+// and the changelog usually includes records of changes such as bug fixes, 
+// new features, etc.” 
