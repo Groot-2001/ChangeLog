@@ -41,9 +41,52 @@ model Product {
   belongsToId String
   belongsTo   User     @relation(fields: [belongsToId], references: [id])
   createdAt   DateTime @default(now())
+  Updates     Update[]
 }
 
 //“ A changelog is a log or record of all notable changes made to a project. 
 // The project is often a website or software project, 
 // and the changelog usually includes records of changes such as bug fixes, 
 // new features, etc.” 
+
+// Type	    Description
+// feat	    Introduce a new feature to the codebase
+// fix	    Fix a bug in the codebase
+// docs	    Create/update documentation
+// style	  Feature and updates related to styling
+// refactor	Refactor a specific section of the codebase
+// test	    Add or update code related to testing
+// chore	  Regular code maintenance
+
+enum UPDATE_STATUS {
+  IN_PROGRESS
+  SHIPPED
+  DEPRECATED
+}
+
+//Updates model
+model Update {
+  id           String        @id @default(uuid())
+  title        String
+  content      String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime
+  status       UPDATE_STATUS @default(IN_PROGRESS)
+  version      String? //version is optional field
+  assets       String? //assets could be images,log etc.
+  productId    String
+  products     Product       @relation(fields: [productId], references: [id])
+  UpdatePoints UpdatePoint[]
+}
+
+//UpdatePoint model
+
+model UpdatePoint {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(255)
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  updateId    String
+  update      Update   @relation(fields: [updateId], references: [id])
+}
