@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 
 //File Imports
+import {createUser ,signin} from "./Handlers/user";
 import router from "./routers";
 import { protect } from "./utils/auth";
 
@@ -32,6 +33,10 @@ app.use(cors())
 
 //Router Middleware
 app.use("/api/v1", protect, router);
+
+//Authentication Middleware
+app.post("/auth/v1/signup", createUser);
+app.post("/auth/v1/signin", signin);
 
 
 export default app;

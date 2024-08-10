@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-
 //Generating and verifying JWT Tokens
 
 /**
@@ -12,6 +11,7 @@ import jwt from "jsonwebtoken";
 /** createJWT()
  * @param user 
  * user is user payload to identify the user.
+ * @return Token
  */
 
 export const createJWT = (user) => {
