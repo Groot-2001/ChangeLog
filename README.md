@@ -1,4 +1,4 @@
-<h3>Changelog App Backend (Nodejs,Typescript,Expresss,prisma,postgresSQL)</h3>
+<h3>Changelog App Backend (Nodejs,Typescript,Express,prisma,postgresSQL)</h3>
 <p>A changelog is a log or record of all notable changes made to a project.
 The project is often a website or software project, and the changelog usually includes records of changes such as bug fixes, new features, etc.
 A changelog has historically included all changes made to a project. The "Keep a Changelog" site instead advocates that a changelog not include all changes, 
