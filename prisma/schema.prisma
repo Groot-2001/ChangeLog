@@ -42,6 +42,8 @@ model Product {
   belongsTo   User     @relation(fields: [belongsToId], references: [id])
   createdAt   DateTime @default(now())
   Updates     Update[]
+
+  @@unique([id, belongsToId])
 }
 
 //“ A changelog is a log or record of all notable changes made to a project. 

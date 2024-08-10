@@ -1,7 +1,12 @@
 import { Router } from "express";
-import { createProduct, deleteOneProduct, getAllProduct, getOneProduct, updateOneProduct } from "./Handlers/products";
-
 const router = Router();
+import {
+    createProduct,
+    deleteOneProduct,
+    getAllProduct,
+    getOneProduct,
+    updateOneProduct
+} from "./Handlers/products";
 
 import {
     checkProducts,
@@ -12,7 +17,7 @@ import {
 
 //API ENDPOINTS
 /**
- * app.[method]([route], [route handler])
+ * app.[method]([route],[middleware],[route handler])
  */
 
 /**

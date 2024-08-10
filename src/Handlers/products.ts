@@ -23,33 +23,39 @@ export const createProduct = async (req, res) => {
     });
 
     return res.status(200).json({
-        products
+        data: products
     })
 }
 
 //getAllProducts
 export const getAllProduct = async (req, res) => {
-    const data = await prisma.product.findMany({
+    const product_data = await prisma.user.findUnique({
         where: {
-            belongsToId: req.user.id
+            id: req.user.id
+        },
+        include: {
+            products: true
         }
     });
 
     return res.status(200).json({
-        data
+        data: product_data.products
     })
 }
 
 //getOneProduct
 export const getOneProduct = async (req, res) => {
-    const data = await prisma.product.findUnique({
+    const product_data = await prisma.product.findUnique({
         where: {
-            id: req.params.id
+            id_belongsToId: {
+                id: req.params.id,
+                belongsToId: req.user.id
+            }
         }
     });
 
     return res.status(200).json({
-        data
+        data: product_data
     })
 }
 
@@ -57,7 +63,10 @@ export const getOneProduct = async (req, res) => {
 export const updateOneProduct = async (req, res) => {
     const updated_data = await prisma.product.update({
         where: {
-            id: req.params.id
+            id_belongsToId: {
+                id: req.params.id,
+                belongsToId: req.user.id
+            }
         },
         data: {
             name: req.body.name
@@ -65,7 +74,7 @@ export const updateOneProduct = async (req, res) => {
     });
 
     return res.status(200).json({
-        updated_data
+        data: updated_data
     })
 }
 
@@ -73,11 +82,14 @@ export const updateOneProduct = async (req, res) => {
 export const deleteOneProduct = async (req, res) => {
     const deleted_data = await prisma.product.delete({
         where: {
-            id: req.params.id
+            id_belongsToId: {
+                id: req.params.id,
+                belongsToId: req.user.id
+            }
         }
     });
 
     return res.status(200).json({
-        deleted_data
+        data: deleted_data
     })
 }
