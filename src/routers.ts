@@ -7,6 +7,13 @@ import {
     getOneProduct,
     updateOneProduct
 } from "./Handlers/products";
+import {
+    changeUpdate,
+    createUpdates,
+    deleteUpdate,
+    getAllUpdates,
+    getOneUpdate
+} from "./Handlers/updates";
 
 import {
     checkProducts,
@@ -44,19 +51,19 @@ router.delete("/Products/:id", deleteOneProduct)
  */
 
 //Create A Updates
-router.post("/Updates", checkProductUpdate, handleInputError, () => { })
+router.post("/Updates", checkProductUpdate, handleInputError, createUpdates);
 
 //Get All Updates
-router.get("/Updates", () => { })
+router.get("/Updates", getAllUpdates)
 
 //Get Individual Updates (Specific one)
-router.get("/Updates/:id", () => { })
+router.get("/Updates/:id", getOneUpdate)
 
 //Update Individual Updates (Specific one)
-router.put("/Updates/:id", () => { })
+router.put("/Updates/:id", changeUpdate)
 
 //Delete Individual Updates (Specific one)
-router.delete("/Updates/:id", () => { })
+router.delete("/Updates/:id", deleteUpdate)
 
 /**
  * Updatepts Routes
