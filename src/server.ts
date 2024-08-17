@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 
 //File Imports
-import {createUser ,signin} from "./Handlers/user";
+import { createUser, signin } from "./Handlers/user";
 import router from "./routers";
 import { protect } from "./utils/auth";
 
@@ -38,5 +38,20 @@ app.use("/api/v1", protect, router);
 app.post("/auth/v1/signup", createUser);
 app.post("/auth/v1/signin", signin);
 
+//handling 404 error
+app.use("*", (req, res, next) => {
+    res.status(404).json({ message: "404 Page Not Found" });
+    next();
+});
+
+// body parser error catcher
+app.use((err, req, res, next) => {
+    if (err) {
+        console.error(err);
+        res.status(400).json({ error: "error parsing data" });
+    } else {
+        next();
+    }
+});
 
 export default app;
